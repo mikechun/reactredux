@@ -9,7 +9,7 @@ export const apiSlice = createApi({
   baseQuery: fetchBaseQuery({ 
     baseUrl: ``,
     prepareHeaders: async (headers, { getState }) => {
-      const token = (getState() as RootState).auth.googleToken
+      const token = (getState() as RootState).auth.user?.accessToken
       headers.set('Authorization', `Bearer ${token}`)
       return headers
     },

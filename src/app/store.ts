@@ -16,6 +16,7 @@ const persistConfig = {
   key: 'root',
   version: 1,
   storage,
+  blacklist: ['auth'] // auth is persisted by Firebase sdk
 }
 
 const rootReducer = combineReducers({

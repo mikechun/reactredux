@@ -12,6 +12,8 @@ const container = document.getElementById('root')!;
 const root = createRoot(container);
 
 root.render(
+  // Strict mode renders components twice to find idempotency issues
+  // https://reactjs.org/docs/strict-mode.html#detecting-unexpected-side-effects
   <React.StrictMode>
     <Provider store={store}>
       <PersistGate loading={null} persistor={persistor}>

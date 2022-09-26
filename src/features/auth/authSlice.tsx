@@ -1,25 +1,29 @@
 import { createSlice, PayloadAction } from "@reduxjs/toolkit";
 
+import type { RootState } from "../../app/store";
+import type { Profile } from "../account/profile";
+
 interface IAuth {
-  googleToken: string,
+  user: Profile | null | undefined,
 }
 
 const initialState: IAuth = {
-  googleToken: ''
+  user: undefined,
 }
 
 export const authSlice = createSlice({
   name: 'auth',
   initialState, 
   reducers: {
-    authGoogle: (state, action: PayloadAction<string>) => {
-      state.googleToken = action.payload
+    login: (state, action: PayloadAction<Profile>) => {
+      state.user = action.payload;
     },
     logout: (state) => {
-      state.googleToken = ''
+      state.user = null;
     }
   }
 })
 
-export const { authGoogle, logout } = authSlice.actions
+export const { login, logout } = authSlice.actions
+export const selectUser = (state: RootState) => state.auth.user
 export default authSlice.reducer
